@@ -2,182 +2,181 @@ import streamlit as st
 import datetime
 
 # -----------------------------------------------------------------------------
-# CONFIGURAÇÃO DA PÁGINA
+# CONFIGURAÇÃO DA PÁGINA (ESTILO LOVEPANDA)
 # -----------------------------------------------------------------------------
 st.set_page_config(
-    page_title="UM PRESENTE PARA A ISABELA ❤️",
-    page_icon="❤️",
-    layout="wide"
+    page_title="Armando & Isabela ❤️",
+    page_icon="🐼",
+    layout="centered"
 )
 
 # -----------------------------------------------------------------------------
-# ESTILIZAÇÃO CUSTOMIZADA (CSS) - Visual solicitado
+# CSS CUSTOMIZADO (RECRIAÇÃO DO DESIGN DO LOVEPANDA)
 # -----------------------------------------------------------------------------
 st.markdown("""
     <style>
-    /* Fundo da aplicação */
+    /* Fundo suave em gradiente do LovePanda */
     .stApp {
-        background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 50%, #ffe5ec 100%) !important;
-        font-family: 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(180deg, #ffb5a7 0%, #fcd5ce 40%, #f8edeb 100%) !important;
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
     }
 
-    /* Forçar textos a ficarem com cor legível */
+    /* Ocultar elementos padrão do Streamlit */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+
+    /* Cores gerais de texto */
     p, span, div, label, h1, h2, h3, h4 {
-        color: #4a0e17 !important;
+        color: #6b705c !important;
     }
 
-    /* Faixa de Cabeçalho Superior */
-    .top-header {
-        background-color: #f7cad0;
-        padding: 15px;
-        border-radius: 12px;
+    /* Cartão Principal Flutuante */
+    .main-card {
+        background-color: rgba(255, 255, 255, 0.92);
+        border-radius: 24px;
+        padding: 30px 20px;
+        box-shadow: 0 12px 30px rgba(157, 129, 137, 0.2);
         text-align: center;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        margin-bottom: 30px;
+        margin-bottom: 25px;
+        border: 1px solid #fec5bb;
     }
-    .top-header h1 {
-        color: #800f2f !important;
-        font-size: 2rem;
+
+    /* Título do Casal */
+    .couple-title {
+        font-family: 'Georgia', serif;
+        color: #d8e2dc !important;
+        color: #b7094c !important;
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        color: #f4acb7 !important;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    /* Contador de Tempo em Destaque */
+    .time-counter {
+        background: #ffe5ec;
+        border-radius: 16px;
+        padding: 15px;
+        margin: 20px 0;
+        border: 1px dashed #ffb3c1;
+    }
+    .time-counter h3 {
+        color: #c9184a !important;
+        font-size: 1.5rem;
         margin: 0;
         font-weight: bold;
     }
 
-    /* Moldura de Celular para o Print da Conversa */
-    .phone-frame {
-        border: 2px dashed #b7094c;
-        border-radius: 25px;
-        padding: 20px;
-        background-color: rgba(255, 255, 255, 0.5);
+    /* Titulo das Seções */
+    .section-header {
+        color: #a4133c !important;
+        font-size: 1.4rem;
+        font-weight: 700;
         text-align: center;
-        margin-bottom: 10px;
+        margin: 30px 0 15px 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
-    
-    .phone-screen {
-        border: 4px solid #a4133c;
-        border-radius: 20px;
+
+    /* Caixas de Texto da Carta */
+    .letter-card {
         background-color: #ffffff;
-        padding: 10px;
-        max-width: 340px;
-        margin: 0 auto;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-
-    .phone-header {
-        font-size: 0.85rem;
-        color: #666 !important;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 8px;
-        margin-bottom: 12px;
-        font-weight: bold;
-    }
-
-    .section-title {
-        color: #590d22 !important;
-        font-size: 1.8rem;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .sub-caption {
-        text-align: center;
-        color: #800f2f !important;
-        font-size: 0.9rem;
-        font-weight: bold;
-        margin-top: 10px;
-    }
-    
-    .carta-box {
-        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 20px;
         padding: 25px;
-        border-radius: 15px;
-        border: 2px solid #ffb3c1;
-        text-align: center;
-        font-size: 1.1rem;
+        border-left: 5px solid #ff4d6d;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        font-size: 1.05rem;
         line-height: 1.8;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    /* Moldura de Foto */
+    .photo-caption {
+        text-align: center;
+        font-weight: 600;
+        color: #800f2f !important;
+        margin-top: 8px;
+        margin-bottom: 25px;
+        font-size: 0.95rem;
     }
     </style>
 """, unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# DADOS E CÁLCULO DE DIAS
+# CÁLCULO DE DIAS JUNTOS
 # -----------------------------------------------------------------------------
 DATA_INICIO = datetime.date(2023, 1, 15)
 dias_juntos = (datetime.date.today() - DATA_INICIO).days
 
 # -----------------------------------------------------------------------------
-# CABEÇALHO DO SITE
+# CARD PRINCIPAL DE ENTRADA (ESTILO LOVEPANDA)
 # -----------------------------------------------------------------------------
-st.markdown("""
-    <div class="top-header">
-        <h1>UM PRESENTE PARA MEU MOZÃO ❤️</h1>
+st.markdown(f"""
+    <div class="main-card">
+        <div class="couple-title">Armando & Isabela 🐼❤️</div>
+        <div class="subtitle">Um pedacinho da nossa história de amor</div>
+        
+        <div class="time-counter">
+            <h3>🥰 Juntos há {dias_juntos} dias!</h3>
+            <p style="margin: 5px 0 0 0; font-size: 0.9rem;">E cada segundo ao seu lado continua sendo inesquecível.</p>
+        </div>
     </div>
 """, unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# LAYOUT EM COLUNAS: CARDÁPIO (ESQUERDA) E CONTEÚDO PRINCIPAL (DIREITA)
+# PLAYER DE MÚSICA FIXO EM DESTAQUE
 # -----------------------------------------------------------------------------
-col_menu, col_conteudo = st.columns([1, 2.5], gap="large")
+st.markdown('<div class="section-header">🎵 Nossa Trilha Sonora</div>', unsafe_allow_html=True)
+st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", format="audio/mp3")
 
-# --- COLUNA DA ESQUERDA: Cardápio de Momentos ---
-with col_menu:
-    st.subheader("📋 Cardápio de Momentos")
-    
-    opcao = st.radio(
-        label="Navegue pelas opções:",
-        options=[
-            "💬 Primeira Conversa",
-            "🎵 Uma Música", 
-            "📸 Nossas Fotos",
-            "💌 Minha Carta"
-        ],
-        label_visibility="collapsed"
-    )
-    
-    st.markdown("---")
-    st.markdown(f"🗓️ **Juntos há {dias_juntos} dias!**")
-    st.caption("E cada segundo ao seu lado vale a pena 🥰")
+st.divider()
 
-# --- COLUNA DA DIREITA: Conteúdo dinâmico baseado no menu ---
-with col_conteudo:
-    
-    # OPÇÃO 1: PRIMEIRA CONVERSA (Com a moldura no estilo celular)
-    if opcao == "💬 Primeira Conversa":
-        st.markdown('<div class="section-title">AQUI ONDE TODO MEU AMOR COMEÇOU</div>', unsafe_allow_html=True)
-        
-        col_texto, col_celular = st.columns([1, 1.2])
-        
-        with col_texto:
-            st.markdown("### 📱 Nossos Primeiros Passos")
-            st.write(f"""
-            Foi no dia **{DATA_INICIO.strftime('%d/%m/%Y')}** que demos o primeiro passo dessa jornada linda.
-            
-            Cada mensagem trocada, cada "oi" tímido e cada risada pelo celular já mostravam que isso se transformaria no maior amor da minha vida! ❤️
-            """)
-        
-        with col_celular:
-            st.markdown('<div class="phone-frame">', unsafe_allow_html=True)
-            st.markdown("""
-                <div class="phone-screen">
-                    <div class="phone-header">💬 Chat com o Meu Mozão</div>
-                </div>
-            """, unsafe_allow_html=True)
-            
-            # Exibe o print da conversa foto1.jpeg
-            try:
-                st.image("foto1.jpeg", use_container_width=True)
-            except Exception:
-                st.error("Imagem `foto1.jpeg` não encontrada no GitHub.")
-            
-            st.markdown('</div>', unsafe_allow_html=True)
-            st.markdown('<p class="sub-caption">ONDE EU JA ESTAVA APAIXONADO POR VOCE</p>', unsafe_allow_html=True)
+# -----------------------------------------------------------------------------
+# SEÇÃO 1: PRIMEIRA CONVERSA (FOTO1)
+# -----------------------------------------------------------------------------
+st.markdown('<div class="section-header">💬 Onde Tudo Começou</div>', unsafe_allow_html=True)
+try:
+    st.image("foto1.jpeg", use_container_width=True)
+    st.markdown('<div class="photo-caption">ONDE EU JA ESTAVA APAIXONADO POR VOCE</div>', unsafe_allow_html=True)
+except Exception:
+    st.error("Imagem foto1.jpeg não encontrada.")
 
-    # OPÇÃO 2: MÚSICA
-    elif opcao == "🎵 Uma Música":
-        st.markdown('<div class="section-title">Nossa Trilha Sonora 🎵</div>', unsafe_allow_html=True)
-        st.write("Dê o play para ouvir a nossa música especial enquanto navega:")
-        st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", format="audio/mp3")
+st.divider()
 
-    # OPÇÃO 3: FOTOS
-    elif opcao == "📸 Nossas Fotos":
-        st.markdown('<div class="section-title">Nossos Melhores Momentos 📸</div>', unsafe_allow_html=True)
+# -----------------------------------------------------------------------------
+# SEÇÃO 2: GALERIA DE MEMÓRIAS (FOTO2, FOTO3, FOTO4, FOTO5, FOTO7)
+# -----------------------------------------------------------------------------
+st.markdown('<div class="section-header">📸 Nossos Melhores Momentos</div>', unsafe_allow_html=True)
+
+galeria = [
+    {
+        "arquivo": "foto2.jpeg", 
+        "legenda": "NOSSA PRIMEIRA FOTO MESMO PECANDO EM NAO TIRAR MUITAS KK TODAS QUE TEMOS JUNTOS SAO LINDAS!"
+    },
+    {
+        "arquivo": "foto3.jpeg", 
+        "legenda": "NOSSO 'PRIMEIRO' SHOW DE MUITOS 🤘"
+    },
+    {
+        "arquivo": "foto4.jpeg", 
+        "legenda": "NOSSA PRIMEIRA VIAGEM AINDA POR CIMA ACOPANHADOS DA JUJU ❤️"
+    },
+    {
+        "arquivo": "foto5.jpeg", 
+        "legenda": "A vista incrível da praia que marcou a nossa viagem ❤️"
+    },
+    {
+        "arquivo": "foto7.jpeg", 
+        "legenda": "NOSSO FUTURO ❤️"
+    }
+]
+
+for item in galeria:
