@@ -45,7 +45,6 @@ st.markdown("""
     /* Título do Casal */
     .couple-title {
         font-family: 'Georgia', serif;
-        color: #d8e2dc !important;
         color: #b7094c !important;
         font-size: 2.2rem;
         font-weight: 800;
@@ -145,38 +144,5 @@ st.divider()
 st.markdown('<div class="section-header">💬 Onde Tudo Começou</div>', unsafe_allow_html=True)
 try:
     st.image("foto1.jpeg", use_container_width=True)
-    st.markdown('<div class="photo-caption">ONDE EU JA ESTAVA APAIXONADO POR VOCE</div>', unsafe_allow_html=True)
-except Exception:
-    st.error("Imagem foto1.jpeg não encontrada.")
-
-st.divider()
-
-# -----------------------------------------------------------------------------
-# SEÇÃO 2: GALERIA DE MEMÓRIAS (FOTO2, FOTO3, FOTO4, FOTO5, FOTO7)
-# -----------------------------------------------------------------------------
-st.markdown('<div class="section-header">📸 Nossos Melhores Momentos</div>', unsafe_allow_html=True)
-
-galeria = [
-    {
-        "arquivo": "foto2.jpeg", 
-        "legenda": "NOSSA PRIMEIRA FOTO MESMO PECANDO EM NAO TIRAR MUITAS KK TODAS QUE TEMOS JUNTOS SAO LINDAS!"
-    },
-    {
-        "arquivo": "foto3.jpeg", 
-        "legenda": "NOSSO 'PRIMEIRO' SHOW DE MUITOS 🤘"
-    },
-    {
-        "arquivo": "foto4.jpeg", 
-        "legenda": "NOSSA PRIMEIRA VIAGEM AINDA POR CIMA ACOPANHADOS DA JUJU ❤️"
-    },
-    {
-        "arquivo": "foto5.jpeg", 
-        "legenda": "A vista incrível da praia que marcou a nossa viagem ❤️"
-    },
-    {
-        "arquivo": "foto7.jpeg", 
-        "legenda": "NOSSO FUTURO ❤️"
-    }
-]
-
-for item in galeria:
+    st.markdown('<div class="photo-caption">ONDE EU JA ESTAVA APAIXONADO POR VOCE</div>', unsafe_allow_html=
+    
