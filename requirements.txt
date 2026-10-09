@@ -1,1 +1,2 @@
+Plaintext
 index.html
