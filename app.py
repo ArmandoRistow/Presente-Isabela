@@ -1,148 +1,206 @@
-import streamlit as st
-import datetime
-
-# -----------------------------------------------------------------------------
-# CONFIGURAÇÃO DA PÁGINA (ESTILO LOVEPANDA)
-# -----------------------------------------------------------------------------
-st.set_page_config(
-    page_title="Armando & Isabela ❤️",
-    page_icon="🐼",
-    layout="centered"
-)
-
-# -----------------------------------------------------------------------------
-# CSS CUSTOMIZADO (RECRIAÇÃO DO DESIGN DO LOVEPANDA)
-# -----------------------------------------------------------------------------
-st.markdown("""
-    <style>
-    /* Fundo suave em gradiente do LovePanda */
-    .stApp {
-        background: linear-gradient(180deg, #ffb5a7 0%, #fcd5ce 40%, #f8edeb 100%) !important;
-        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para o Meu Amor ❤️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    /* Ocultar elementos padrão do Streamlit */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-
-    /* Cores gerais de texto */
-    p, span, div, label, h1, h2, h3, h4 {
-        color: #6b705c !important;
+    body {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+      padding: 20px;
     }
 
-    /* Cartão Principal Flutuante */
-    .main-card {
-        background-color: rgba(255, 255, 255, 0.92);
-        border-radius: 24px;
-        padding: 30px 20px;
-        box-shadow: 0 12px 30px rgba(157, 129, 137, 0.2);
-        text-align: center;
-        margin-bottom: 25px;
-        border: 1px solid #fec5bb;
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
     }
 
-    /* Título do Casal */
-    .couple-title {
-        font-family: 'Georgia', serif;
-        color: #b7094c !important;
-        font-size: 2.2rem;
-        font-weight: 800;
-        margin-bottom: 5px;
+    h1 {
+      color: #e63946;
+      margin-bottom: 10px;
     }
 
-    .subtitle {
-        color: #f4acb7 !important;
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 20px;
+    p.subtitle {
+      color: #666;
+      margin-bottom: 25px;
+      font-size: 0.95rem;
     }
 
-    /* Contador de Tempo em Destaque */
-    .time-counter {
-        background: #ffe5ec;
-        border-radius: 16px;
-        padding: 15px;
-        margin: 20px 0;
-        border: 1px dashed #ffb3c1;
-    }
-    .time-counter h3 {
-        color: #c9184a !important;
-        font-size: 1.5rem;
-        margin: 0;
-        font-weight: bold;
+    /* Menu de Abas */
+    .menu {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ffe5ec;
     }
 
-    /* Titulo das Seções */
-    .section-header {
-        color: #a4133c !important;
-        font-size: 1.4rem;
-        font-weight: 700;
-        text-align: center;
-        margin: 30px 0 15px 0;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 10px 15px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #888;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
-    /* Caixas de Texto da Carta */
-    .letter-card {
-        background-color: #ffffff;
-        border-radius: 20px;
-        padding: 25px;
-        border-left: 5px solid #ff4d6d;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        font-size: 1.05rem;
-        line-height: 1.8;
-        text-align: center;
-        margin-top: 15px;
+    .tab-btn.active {
+      color: #e63946;
+      border-bottom: 3px solid #e63946;
     }
 
-    /* Moldura de Foto */
-    .photo-caption {
-        text-align: center;
-        font-weight: 600;
-        color: #800f2f !important;
-        margin-top: 8px;
-        margin-bottom: 25px;
-        font-size: 0.95rem;
+    /* Conteúdo das Abas */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
     }
-    </style>
-""", unsafe_allow_html=True)
 
-# -----------------------------------------------------------------------------
-# CÁLCULO DE DIAS JUNTOS
-# -----------------------------------------------------------------------------
-DATA_INICIO = datetime.date(2023, 1, 15)
-dias_juntos = (datetime.date.today() - DATA_INICIO).days
+    .tab-content.active {
+      display: block;
+    }
 
-# -----------------------------------------------------------------------------
-# CARD PRINCIPAL DE ENTRADA (ESTILO LOVEPANDA)
-# -----------------------------------------------------------------------------
-st.markdown(f"""
-    <div class="main-card">
-        <div class="couple-title">Armando & Isabela 🐼❤️</div>
-        <div class="subtitle">Um pedacinho da nossa história de amor</div>
-        
-        <div class="time-counter">
-            <h3>🥰 Juntos há {dias_juntos} dias!</h3>
-            <p style="margin: 5px 0 0 0; font-size: 0.9rem;">E cada segundo ao seu lado continua sendo inesquecível.</p>
-        </div>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Galeria de Fotos */
+    .photo-frame {
+      width: 100%;
+      height: 280px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Botão de Música */
+    .music-btn {
+      background: #e63946;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 15px;
+      box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
+      transition: 0.2s;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Para o Meu Amor ❤️</h1>
+    <p class="subtitle">Um cantinho especial só nosso</p>
+
+    <!-- Menu Interativo -->
+    <div class="menu">
+      <button class="tab-btn active" onclick="openTab('fotos')">Nossa Galeria</button>
+      <button class="tab-btn" onclick="openTab('carta')">Minha Carta</button>
+      <button class="tab-btn" onclick="openTab('motivos')">Por que te amo?</button>
     </div>
-""", unsafe_allow_html=True)
 
-# -----------------------------------------------------------------------------
-# PLAYER DE MÚSICA FIXO EM DESTAQUE
-# -----------------------------------------------------------------------------
-st.markdown('<div class="section-header">🎵 Nossa Trilha Sonora</div>', unsafe_allow_html=True)
-st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", format="audio/mp3")
+    <!-- Aba 1: Fotos -->
+    <div id="fotos" class="tab-content active">
+      <div class="photo-frame">
+        <img id="current-photo" src="https://picsum.photos/400/300?random=1" alt="Foto Nossa">
+      </div>
+      <button class="music-btn" style="background: #4a4e69;" onclick="nextPhoto()">Próxima Foto 📸</button>
+    </div>
 
-st.divider()
+    <!-- Aba 2: Carta -->
+    <div id="carta" class="tab-content">
+      <p style="text-align: left; line-height: 1.6; font-size: 0.95rem;">
+        Escreva aqui sua mensagem especial... <br><br>
+        Obrigado por cada momento ao meu lado, por todo sorriso e por deixar minha vida muito mais leve e feliz. Te amo!
+      </p>
+    </div>
 
-# -----------------------------------------------------------------------------
-# SEÇÃO 1: PRIMEIRA CONVERSA (FOTO1)
-# -----------------------------------------------------------------------------
-st.markdown('<div class="section-header">💬 Onde Tudo Começou</div>', unsafe_allow_html=True)
-try:
-    st.image("foto1.jpeg", use_container_width=True)
-    st.markdown('<div class="photo-caption">ONDE EU JA ESTAVA APAIXONADO POR VOCE</div>', unsafe_allow_html=
+    <!-- Aba 3: Motivos -->
+    <div id="motivos" class="tab-content">
+      <ul style="text-align: left; margin-left: 20px; line-height: 2;">
+        <li>Seu sorriso que ilumina meu dia.</li>
+        <li>O jeito como você cuida de mim.</li>
+        <li>Nossas risadas e piadas internas.</li>
+        <li>Construir um futuro ao seu lado.</li>
+      </ul>
+    </div>
+
+    <!-- Música de Fundo -->
+    <audio id="bg-music" loop>
+      <!-- Substitua o link abaixo pela sua música favorita (link direto .mp3) -->
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
     
+    <button class="music-btn" onclick="toggleMusic()">🎵 <span id="music-text">Tocar Música</span></button>
+  </div>
+
+  <script>
+    // Navegação do Menu Interativo
+    function openTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    // Carrossel de Fotos Simples
+    const photos = [
+      "foto1.jpg", // Substitua pelo caminho das suas fotos
+      "foto2.jpg",
+      "foto3.jpg"
+    ];
+    let photoIndex = 0;
+
+    function nextPhoto() {
+      photoIndex = (photoIndex + 1) % photos.length;
+      document.getElementById('current-photo').src = photos[photoIndex];
+    }
+
+    // Controle de Áudio (Navegadores bloqueiam reprodução automática sem clique prévio)
+    const music = document.getElementById('bg-music');
+    const musicText = document.getElementById('music-text');
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+        musicText.innerText = "Pausar Música";
+      } else {
+        music.pause();
+        musicText.innerText = "Tocar Música";
+      }
+    }
+  </script>
+</body>
+</html>
